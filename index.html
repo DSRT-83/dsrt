@@ -1,75 +1,81 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workspace - SwapFace</title>
-  <link rel="stylesheet" href="swapface.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Workspace SwapFace — Single & Multi (2-7)</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="workspace">
-    <h1>👤 Workspace: SwapFace</h1>
-
-    <!-- Pilih mode -->
-    <div class="mode-selector">
-      <button id="singleBtn" class="active">SwapFace Single</button>
-      <button id="multiBtn">SwapFace Multi</button>
-    </div>
-
-    <!-- Upload area -->
-    <div class="upload-box">
-      <h3 id="uploadTitle">Upload Foto Single</h3>
-      <input type="file" id="faceUpload" accept="image/*" multiple>
-      <button onclick="uploadFace()">Upload</button>
-      <div id="facePreview" class="preview"></div>
-    </div>
-
-    <!-- Template pakaian -->
-    <div class="templates">
-      <h3>Template Pakaian</h3>
-      <div class="template-grid">
-        <div class="template-card">
-          <p>Pakaian Adat Wanita</p>
-          <input type="file" accept="image/*" onchange="previewTemplate(this)">
-          <button>Upload</button>
-          <div class="preview"></div>
-        </div>
-        <div class="template-card">
-          <p>Pakaian Adat Laki-laki</p>
-          <input type="file" accept="image/*" onchange="previewTemplate(this)">
-          <button>Upload</button>
-          <div class="preview"></div>
-        </div>
-        <div class="template-card">
-          <p>Pakaian Nikah Wanita</p>
-          <input type="file" accept="image/*" onchange="previewTemplate(this)">
-          <button>Upload</button>
-          <div class="preview"></div>
-        </div>
-        <div class="template-card">
-          <p>Pakaian Nikah Laki-laki</p>
-          <input type="file" accept="image/*" onchange="previewTemplate(this)">
-          <button>Upload</button>
-          <div class="preview"></div>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">DSRT</div>
+        <div>
+          <h1>Workspace — SwapFace</h1>
+          <p class="subtitle">Single & Multi (2–7) • Drag & Drop • Resize • Rotate • Flatten & Download</p>
         </div>
       </div>
-    </div>
 
-    <!-- Hasil SwapFace -->
-    <div class="results">
-      <h3>Hasil SwapFace</h3>
-      <div id="resultGrid" class="result-grid">
-        <p class="placeholder">Belum ada hasil. Upload foto untuk mulai swapface.</p>
+      <div class="tools">
+        <button id="btnRandom" class="btn">🎲 Random Template</button>
+        <button id="btnFlattenDownload" class="btn">Flatten & Download</button>
       </div>
-    </div>
+    </header>
+
+    <main class="main-grid">
+      <!-- LEFT -->
+      <section class="left-panel">
+        <div class="card">
+          <h3>Upload Wajah (multi)</h3>
+          <input id="faceUpload" type="file" accept="image/*" multiple />
+          <div id="suggestMsg" class="hint"></div>
+          <div id="faceList" class="face-list"></div>
+          <p class="hint">Drag thumbnail ke slot pada canvas. Kamu bisa resize / rotate setelah drop.</p>
+        </div>
+
+        <div class="card">
+          <h3>Kategori</h3>
+          <div id="categories" class="categories"></div>
+        </div>
+
+        <div class="card">
+          <h3>Template</h3>
+          <div id="templateGrid" class="template-grid"></div>
+          <p class="hint">Jika belum punya PNG template, buka <code>generators/make_multi_templates.html</code> lalu save hasil sebagai PNG ke folder <code>/templates</code>.</p>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <section class="right-panel">
+        <div class="card canvas-card">
+          <div class="canvas-toolbar">
+            <div>Preview Canvas</div>
+            <div>
+              <button id="btnClearLayers" class="btn small">Clear</button>
+            </div>
+          </div>
+
+          <div class="canvas-area" id="canvasArea">
+            <canvas id="mainCanvas"></canvas>
+            <!-- face-layer elements and drop zones appended here -->
+          </div>
+
+          <div class="note">Tip: klik tombol "Random Template" utk melihat sampel. Upload N wajah → sistem auto-suggest template yg cocok.</div>
+        </div>
+
+        <div class="card">
+          <h3>Hasil (preview)</h3>
+          <div id="resultGrid" class="result-grid"><p class="placeholder">Belum ada hasil yang di-flatten.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <small>Prototype frontend — integrasi model ML diperlukan jika mau face-swap otomatis (backend).</small>
+    </footer>
   </div>
 
-  <!-- Loading overlay -->
-  <div id="loadingOverlay" class="loading-overlay">
-    <div class="spinner"></div>
-    <p>Memproses swapface...</p>
-  </div>
-
-  <script src="swapface.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
