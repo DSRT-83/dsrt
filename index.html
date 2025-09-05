@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workspace - SwapFace</title>
+  <link rel="stylesheet" href="swapface.css">
+</head>
+<body>
+  <div class="workspace">
+    <h1>👤 Workspace: SwapFace</h1>
+
+    <!-- Pilih mode -->
+    <div class="mode-selector">
+      <button id="singleBtn" class="active">SwapFace Single</button>
+      <button id="multiBtn">SwapFace Multi</button>
+    </div>
+
+    <!-- Upload area -->
+    <div class="upload-box">
+      <h3 id="uploadTitle">Upload Foto Single</h3>
+      <input type="file" id="faceUpload" accept="image/*" multiple>
+      <button onclick="uploadFace()">Upload</button>
+      <div id="facePreview" class="preview"></div>
+    </div>
+
+    <!-- Template pakaian -->
+    <div class="templates">
+      <h3>Template Pakaian</h3>
+      <div class="template-grid">
+        <div class="template-card">
+          <p>Pakaian Adat Wanita</p>
+          <input type="file" accept="image/*" onchange="previewTemplate(this)">
+          <button>Upload</button>
+          <div class="preview"></div>
+        </div>
+        <div class="template-card">
+          <p>Pakaian Adat Laki-laki</p>
+          <input type="file" accept="image/*" onchange="previewTemplate(this)">
+          <button>Upload</button>
+          <div class="preview"></div>
+        </div>
+        <div class="template-card">
+          <p>Pakaian Nikah Wanita</p>
+          <input type="file" accept="image/*" onchange="previewTemplate(this)">
+          <button>Upload</button>
+          <div class="preview"></div>
+        </div>
+        <div class="template-card">
+          <p>Pakaian Nikah Laki-laki</p>
+          <input type="file" accept="image/*" onchange="previewTemplate(this)">
+          <button>Upload</button>
+          <div class="preview"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hasil SwapFace -->
+    <div class="results">
+      <h3>Hasil SwapFace</h3>
+      <div id="resultGrid" class="result-grid">
+        <p class="placeholder">Belum ada hasil. Upload foto untuk mulai swapface.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>Memproses swapface...</p>
+  </div>
+
+  <script src="swapface.js"></script>
+</body>
+</html>
