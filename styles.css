@@ -1,0 +1,61 @@
+:root{
+  --bg:#081021; --accent:#00cfff; --muted:#9fb0be; --white:#e6f6ff;
+}
+*{box-sizing:border-box}
+body{ margin:0; font-family:Inter,system-ui,Arial; background:linear-gradient(180deg,#06121a,#071827); color:var(--white); padding:18px; }
+.container{ max-width:1200px; margin:0 auto; }
+.header{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; }
+.brand{ display:flex; gap:12px; align-items:center; }
+.logo{ width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#5de9ff); color:#001; display:flex;align-items:center;justify-content:center;font-weight:800; box-shadow:0 8px 30px rgba(0,200,255,0.06); }
+.header h1{ margin:0; font-size:18px; }
+.subtitle{ margin:0; font-size:13px; color:var(--muted); }
+
+.btn{ background:var(--accent); color:#001; border:0; padding:8px 12px; border-radius:8px; cursor:pointer; font-weight:700; }
+.btn.small{ padding:6px 8px; font-size:13px; border-radius:6px; }
+
+.main-grid{ display:grid; grid-template-columns:360px 1fr; gap:18px; align-items:start; }
+.left-panel .card, .right-panel .card{ background:rgba(255,255,255,0.03); padding:14px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); margin-bottom:12px; }
+
+.card h3{ margin:0 0 10px 0; font-size:15px; }
+.face-list{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
+.face-thumb{ width:64px; height:64px; border-radius:8px; overflow:hidden; border:2px solid rgba(255,255,255,0.06); cursor:grab; background:#fff; }
+.face-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.categories{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+.categories button{ background:rgba(255,255,255,0.03); color:var(--white); border:1px solid rgba(255,255,255,0.02); padding:6px 10px; border-radius:8px; cursor:pointer; }
+.categories button.active{ background:linear-gradient(90deg,#043043,#05334a); box-shadow:0 6px 20px rgba(0,200,255,0.04); color:var(--accent); }
+
+.template-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap:10px; }
+.template-card{ background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; text-align:center; border:1px solid rgba(255,255,255,0.03); }
+.template-card img{ width:100%; height:120px; object-fit:cover; border-radius:6px; display:block; }
+.template-card p{ margin:8px 0 6px 0; font-size:13px; color:var(--muted); }
+.template-card button{ padding:6px 10px; border-radius:8px; border:0; background:var(--accent); color:#001; cursor:pointer; font-weight:700; }
+
+.canvas-card{ padding:10px; display:flex; flex-direction:column; gap:10px; }
+.canvas-toolbar{ display:flex; justify-content:space-between; align-items:center; }
+.canvas-area{ position:relative; width:100%; background:linear-gradient(180deg,#001824,#032534); border-radius:10px; padding:12px; display:flex; justify-content:center; align-items:center; min-height:520px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); }
+#mainCanvas{ background:linear-gradient(180deg,#001824,#032534); border-radius:8px; box-shadow: inset 0 2px 12px rgba(0,0,0,0.4); max-width:100%; }
+
+/* face-layer (draggable layer) */
+.face-layer{ position:absolute; border:2px dashed rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:6px; touch-action:none; background:transparent; }
+.face-layer img{ width:100%; height:100%; object-fit:cover; pointer-events:none; user-select:none; }
+
+.resize-handle, .rotate-handle{ width:12px; height:12px; position:absolute; background:var(--white); border:2px solid var(--accent); border-radius:50%; }
+.resize-handle{ right:-10px; bottom:-10px; cursor:se-resize; }
+.rotate-handle{ left:50%; top:-18px; transform:translateX(-50%); cursor:grab; }
+
+.drop-zone{ position:absolute; border:2px dashed rgba(255,100,0,0.6); border-radius:6px; pointer-events:auto; background: rgba(255,255,255,0.01); }
+
+.result-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:10px; }
+.result-card{ background:rgba(255,255,255,0.02); padding:8px; border-radius:8px; text-align:center; }
+.result-card img{ width:100%; border-radius:6px; display:block; }
+
+.hint{ font-size:13px; color:var(--muted); margin-top:8px; }
+.note{ font-size:12px; color:var(--muted); text-align:center; margin-top:8px; }
+.placeholder{ color:rgba(255,255,255,0.18); text-align:center; padding:18px; }
+
+/* responsive */
+@media (max-width:980px){
+  .main-grid{ grid-template-columns: 1fr; }
+  .canvas-area{ min-height:420px; }
+}
