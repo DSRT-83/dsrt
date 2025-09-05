@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Make Multi Templates</title></head><body style="font-family:Arial;padding:16px">
+<h2>Generate Dummy Multi Templates (2..7)</h2>
+<p>Click the links below to create PNG placeholders for multi templates. Save each PNG into the <code>templates/</code> folder used by the workspace.</p>
+<script>
+function makeTemplate(name, slots, file, w=700, h=300){
+  const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#f7f7fb'; ctx.fillRect(0,0,w,h);
+  ctx.fillStyle = '#000'; ctx.font='20px Arial'; ctx.fillText(name, 20, 30);
+
+  ctx.strokeStyle='red'; ctx.lineWidth=3;
+  slots.forEach((s,i)=>{
+    ctx.strokeRect(s.x, s.y, s.w, s.h);
+    ctx.fillText('Face ' + (i+1), s.x, s.y - 8);
+  });
+
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png');
+  a.download = file;
+  a.innerText = 'Download ' + file;
+  a.style.display = 'inline-block'; a.style.margin='6px'; a.style.padding='8px';
+  a.style.background='#00cfff'; a.style.color='#001'; a.style.borderRadius='6px';
+  document.body.appendChild(a);
+  document.body.appendChild(document.createElement('br'));
+}
+
+// create multi templates
+makeTemplate('Couple (2)', [{x:120,y:80,w:140,h:180},{x:300,y:85,w:140,h:180}], 'multi2.png');
+makeTemplate('Group 3', [{x:100,y:80,w:120,h:160},{x:250,y:85,w:120,h:160},{x:400,y:90,w:120,h:160}], 'multi3.png');
+makeTemplate('Group 4', [{x:80,y:70,w:110,h:150},{x:220,y:75,w:110,h:150},{x:360,y:80,w:110,h:150},{x:500,y:85,w:110,h:150}], 'multi4.png');
+makeTemplate('Group 5', [{x:60,y:70,w:100,h:140},{x:180,y:75,w:100,h:140},{x:300,y:80,w:100,h:140},{x:420,y:85,w:100,h:140},{x:540,y:90,w:100,h:140}], 'multi5.png');
+makeTemplate('Group 6', [{x:40,y:70,w:90,h:130},{x:140,y:75,w:90,h:130},{x:240,y:80,w:90,h:130},{x:340,y:85,w:90,h:130},{x:440,y:90,w:90,h:130},{x:540,y:95,w:90,h:130}], 'multi6.png');
+makeTemplate('Group 7', [{x:20,y:70,w:80,h:120},{x:110,y:75,w:80,h:120},{x:200,y:80,w:80,h:120},{x:290,y:85,w:80,h:120},{x:380,y:90,w:80,h:120},{x:470,y:95,w:80,h:120},{x:560,y:100,w:80,h:120}], 'multi7.png');
+</script>
+</body></html>
